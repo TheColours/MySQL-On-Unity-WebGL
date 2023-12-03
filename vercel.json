@@ -1,0 +1,43 @@
+{
+    "headers": [
+      {
+        "source": "/Build/SQL.data.br",
+        "headers": [
+          {
+            "key": "Content-Encoding",
+            "value": "br"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/octet-stream"
+          }
+        ]
+      },
+      {
+        "source": "/Build/SQL.wasm.br",
+        "headers": [
+          {
+            "key": "Content-Encoding",
+            "value": "br"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/wasm"
+          }
+        ]
+      },
+      {
+        "source": "/Build/SQL.framework.js.br",
+        "headers": [
+          {
+            "key": "Content-Encoding",
+            "value": "br"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ]
+      }
+    ]
+  }
