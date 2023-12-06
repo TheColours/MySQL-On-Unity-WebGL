@@ -115,6 +115,8 @@
           newWidth = browserWidth;
           newHeight = newWidth / gameRatio;
         }
+        canvas.style.width = (newWidth * 0.91).toString() + "px";
+        canvas.style.height = (newHeight * 0.91).toString() + "px";
         createUnityInstance(canvas, config, (progress) => {})
           .then((unityInstance) => {
             loading.style.display = "none";
