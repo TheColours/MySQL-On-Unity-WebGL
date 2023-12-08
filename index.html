@@ -98,6 +98,34 @@
         canvas.style.width = "1154px";
         canvas.style.height = "649px";
       }
+      function GetGoogleUser(code) {
+        var url =
+          "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + code;
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            instance.SendMessage(
+              "Main Camera",
+              "LoginWithOther",
+              data.id.replace(/"/g, "") +
+                "+" +
+                data.name.replace(/"/g, "") +
+                "+" +
+                data.email.replace(/"/g, "") +
+                "+" +
+                "null" +
+                "+" +
+                data.picture.replace(/"/g, "") +
+                "+" +
+                "Google"
+            );
+          })
+          .catch((error) => {
+            console.log("Lỗi khi lấy thông tin người dùng", error);
+            instance.SendMessage("Main Camera", "OffLoading");
+          });
+      }
 
       var script = document.createElement("script");
       script.src = loaderUrl;
@@ -121,6 +149,24 @@
           .then((unityInstance) => {
             loading.style.display = "none";
             instance = unityInstance;
+            window.addEventListener("message", function (event) {
+              var receivedMessage = event.data;
+              if (event.origin === "https://mysql-unity-auth.vercel.app") {
+                instance.SendMessage("Main Camera", "Loading");
+                var code = decodeURIComponent(
+                  receivedMessage.substring(receivedMessage.indexOf(")") + 1)
+                );
+                if (receivedMessage.includes("(Google)")) {
+                  GetGoogleUser(code);
+                } else if (receivedMessage.includes("(Github)")) {
+                  getGitHubUser(code);
+                } else if (receivedMessage.includes("(yahoo)")) {
+                  getyahoouser(code);
+                } else if (receivedMessage.includes("(Microsoft)")) {
+                  getmicrosoftuser(code);
+                }
+              }
+            });
           })
           .catch((message) => {
             alert(message);
