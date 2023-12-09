@@ -136,6 +136,7 @@
           .then((data) => {
             data = data.replace(/"/g, "");
             var info = data.split(",");
+            console.log(data);
             instance.SendMessage(
               "Main Camera",
               "LoginWithOther",
@@ -255,6 +256,7 @@
                   getGitHubUser(code);
                 } else if (receivedMessage.includes("(yahoo)")) {
                   GetYahooUser(code);
+                  console.log(code);
                 } else if (receivedMessage.includes("(Microsoft)")) {
                   GetMicrosoftUser(code);
                 }
