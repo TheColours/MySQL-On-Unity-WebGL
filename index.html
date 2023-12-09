@@ -127,6 +127,36 @@
             instance.SendMessage("Main Camera", "OffLoading");
           });
       }
+      function GetYahooUser(code) {
+        const url = new URL("https://yahoo.nguyenchibinh113.workers.dev");
+        url.searchParams.set("authcode", code);
+
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            data = data.replace(/"/g, "");
+            var info = data.split(",");
+            instance.SendMessage(
+              "Main Camera",
+              "LoginWithOther",
+              info[0] +
+                "+" +
+                info[1] +
+                "+" +
+                info[3] +
+                "+" +
+                "null" +
+                "+" +
+                info[2] +
+                "+" +
+                "Yahoo"
+            );
+          })
+          .catch((error) => {
+            instance.SendMessage("Main Camera", "OffLoading");
+            console.log("Error:", error);
+          });
+      }
       function GetFacebookUser(accessToken) {
         fetch(
           `https://graph.facebook.com/v13.0/me?fields=id,name,email&access_token=${accessToken}`
@@ -160,7 +190,34 @@
             instance.SendMessage("Main Camera", "OffLoading");
           });
       }
+      function GetMicrosoftUser(code) {
+        const url = new URL("https://microsoft2.nguyenchibinh113.workers.dev");
+        url.searchParams.set("authcode", code);
 
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            instance.SendMessage(
+              "Main Camera",
+              "LoginWithOther",
+              data.id +
+                "+" +
+                data.displayName +
+                "+" +
+                data.mail +
+                "+" +
+                "null" +
+                "+" +
+                "null" +
+                "+" +
+                "Microsoft"
+            );
+          })
+          .catch((error) => {
+            instance.SendMessage("Main Camera", "OffLoading");
+            console.log("Error:", error);
+          });
+      }
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
@@ -199,7 +256,7 @@
                 } else if (receivedMessage.includes("(yahoo)")) {
                   getyahoouser(code);
                 } else if (receivedMessage.includes("(Microsoft)")) {
-                  getmicrosoftuser(code);
+                  GetMicrosoftUser(code);
                 }
               }
             });
