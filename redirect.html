@@ -30,6 +30,12 @@
           endindex = currentURL.indexOf("&token_type");
           message = currentURL.substring(startIndex, endindex);
           break;
+        case "Facebook":
+          startIndex =
+            currentURL.indexOf("access_token=") + "access_token=".length;
+          endindex = currentURL.indexOf("&data_access_expiration_time");
+          message = currentURL.substring(startIndex, endindex);
+          break;
         case "Github":
           startIndex = currentURL.indexOf("code=") + "code=".length;
           endindex = currentURL.indexOf("&state");

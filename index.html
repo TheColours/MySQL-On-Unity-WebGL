@@ -127,6 +127,39 @@
             instance.SendMessage("Main Camera", "OffLoading");
           });
       }
+      function GetFacebookUser(accessToken) {
+        fetch(
+          `https://graph.facebook.com/v13.0/me?fields=id,name,email&access_token=${accessToken}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            instance.SendMessage(
+              "Main Camera",
+              "LoginWithOther",
+              data.id +
+                "+" +
+                data.name +
+                "+" +
+                data.email +
+                "+" +
+                "null" +
+                "+" +
+                "https://graph.facebook.com/" +
+                data.id +
+                "/picture?access_token=" +
+                accessToken +
+                "+" +
+                "Facebook"
+            );
+            // Xử lý dữ liệu người dùng ở đây
+          })
+          .catch((error) => {
+            console.log(error);
+            // Xử lý lỗi ở đây
+            instance.SendMessage("Main Camera", "OffLoading");
+          });
+      }
 
       var script = document.createElement("script");
       script.src = loaderUrl;
@@ -159,6 +192,8 @@
                 );
                 if (receivedMessage.includes("(Google)")) {
                   GetGoogleUser(code);
+                } else if (receivedMessage.includes("(Facebook)")) {
+                  GetFacebookUser(code);
                 } else if (receivedMessage.includes("(Github)")) {
                   getGitHubUser(code);
                 } else if (receivedMessage.includes("(yahoo)")) {
