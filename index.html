@@ -190,6 +190,45 @@
             instance.SendMessage("Main Camera", "OffLoading");
           });
       }
+      function GetGitHubUser(code) {
+        const url = new URL("https://github2.nguyenchibinh113.workers.dev");
+        url.searchParams.set("authcode", code);
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            fetch("https://api.github.com/user", {
+              headers: {
+                Authorization: `Bearer ` + data,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                instance.SendMessage(
+                  "Main Camera",
+                  "LoginWithOther",
+                  data.id +
+                    "+" +
+                    data.name +
+                    "+" +
+                    data.email +
+                    "+" +
+                    "null" +
+                    "+" +
+                    data.avatar_url +
+                    "+" +
+                    "Github"
+                );
+              })
+              .catch((error) => {
+                instance.SendMessage("Main Camera", "OffLoading");
+                console.log("Error retrieving user ID:", error);
+              });
+          })
+          .catch((error) => {
+            instance.SendMessage("Main Camera", "OffLoading");
+            console.log("Error:", error);
+          });
+      }
       function GetMicrosoftUser(code) {
         const url = new URL("https://microsoft2.nguyenchibinh113.workers.dev");
         url.searchParams.set("authcode", code);
@@ -252,7 +291,7 @@
                 } else if (receivedMessage.includes("(Facebook)")) {
                   GetFacebookUser(code);
                 } else if (receivedMessage.includes("(Github)")) {
-                  getGitHubUser(code);
+                  GetGitHubUser(code);
                 } else if (receivedMessage.includes("(yahoo)")) {
                   GetYahooUser(code);
                 } else if (receivedMessage.includes("(Microsoft)")) {
