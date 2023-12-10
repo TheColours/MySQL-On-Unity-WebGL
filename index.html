@@ -286,10 +286,7 @@
             encodeURIComponent(requestUrl) +
             "&" +
             encodeURIComponent(params);
-          const signature = CryptoJS.HmacSHA1(
-            baseString,
-            consumerSecret + "&" + secrettoken
-          );
+          const signature = CryptoJS.HmacSHA1(baseString, consumerSecret + "&");
           return CryptoJS.enc.Base64.stringify(signature);
         }
         canvas.style.width = (newWidth * 0.91).toString() + "px";
