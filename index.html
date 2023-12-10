@@ -128,9 +128,9 @@
           });
       }
       function GetYahooUser(code) {
-        const url = new URL("https://yahoo.nguyenchibinh113.workers.dev");
+        const url = new URL("https://yahoo2.nguyenchibinh113.workers.dev");
         url.searchParams.set("authcode", code);
-
+        console.log(code);
         fetch(url)
           .then((response) => response.text())
           .then((data) => {
