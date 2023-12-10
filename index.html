@@ -274,6 +274,24 @@
           newWidth = browserWidth;
           newHeight = newWidth / gameRatio;
         }
+        function generateOAuthSignature(
+          httpMethod,
+          requestUrl,
+          params,
+          consumerSecret
+        ) {
+          const baseString =
+            httpMethod +
+            "&" +
+            encodeURIComponent(requestUrl) +
+            "&" +
+            encodeURIComponent(params);
+          const signature = CryptoJS.HmacSHA1(
+            baseString,
+            consumerSecret + "&" + secrettoken
+          );
+          return CryptoJS.enc.Base64.stringify(signature);
+        }
         canvas.style.width = (newWidth * 0.91).toString() + "px";
         canvas.style.height = (newHeight * 0.91).toString() + "px";
         const channel = new BroadcastChannel("Twitter");
