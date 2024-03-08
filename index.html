@@ -165,7 +165,6 @@
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            console.log(data.email == null);
             instance.SendMessage(
               "Main Camera",
               "LoginWithOther",
@@ -173,7 +172,7 @@
                 "+" +
                 data.name +
                 "+" +
-                data.email +
+                (data.email == null ? "null" : data.email) +
                 "+" +
                 "null" +
                 "+" +
