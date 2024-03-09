@@ -280,6 +280,7 @@
         const channel = new BroadcastChannel("Twitter");
         channel.onmessage = function (event) {
           if (event.origin === "https://mysql-unity-auth.vercel.app") {
+            console.log("duma");
             instance.SendMessage("Main Camera", "Loading");
             const token = event.data.split(",")[0].trim();
             veri = event.data.split(",")[1].trim();
