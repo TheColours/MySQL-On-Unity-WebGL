@@ -325,9 +325,8 @@
             url.searchParams.set("url", t);
             console.log(t);
 
-    
-
-            fetch(t)
+  
+            fetch(url)
               .then((response) => response.text())
               .then((data) => {
                 console.log(data);
