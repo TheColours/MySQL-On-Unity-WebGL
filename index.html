@@ -325,8 +325,7 @@
             url.searchParams.set("url", t);
             console.log(t);
 
-  
-            fetch(url)
+            fetch("https://thecolors.id.vn/test.php?url=" + t)
               .then((response) => response.text())
               .then((data) => {
                 console.log(data);
