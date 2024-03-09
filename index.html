@@ -374,7 +374,7 @@
                   baseString,
                   encodeURIComponent(consumerSecret) +
                     "&" +
-                    encodeURIComponent(oauthTokenSecret.replace(/"/g, ""))
+                    encodeURIComponent("oauthTokenSecret".replace(/"/g, ""))
                 );
                 signature = CryptoJS.enc.Base64.stringify(signature);
                 const oauthUrl =
