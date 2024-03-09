@@ -325,16 +325,7 @@
             url.searchParams.set("url", t);
             console.log(t);
 
-            const fetchData = async () => {
-              try {
-                const response = await fetch(t, { mode: "no-cors" });
-                // Thực hiện một số xử lý với response, như log ra console
-                console.log("Response:", response);
-              } catch (error) {
-                console.error("Error:", error);
-              }
-            };
-            fetchData();
+    
 
             fetch(url)
               .then((response) => response.text())
