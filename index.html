@@ -283,8 +283,6 @@
             instance.SendMessage("Main Camera", "Loading");
             const token = event.data.split(",")[0].trim();
             veri = event.data.split(",")[1].trim();
-            console.log(token);
-            console.log(veri);
             oauth_nonce =
               Math.random().toString(36).substring(2) + Date.now().toString(36);
             oauth_timestam = Math.floor(Date.now() / 1000);
@@ -322,6 +320,7 @@
               encodeURIComponent(signature);
             const url = new URL("https://oauth1.nguyenchibinh113.workers.dev");
             url.searchParams.set("url", t);
+            console.log(url);
             fetch(url)
               .then((response) => response.json())
               .then((data) => {

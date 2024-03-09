@@ -77,7 +77,7 @@
       } else if (IsTwitter == true) {
         const channel = new BroadcastChannel("Twitter");
         channel.postMessage(decodeURIComponent(message));
-      //  window.close();
+        window.close();
       } else if (Iserror == true) {
         console.log("error: " + Type);
       }
