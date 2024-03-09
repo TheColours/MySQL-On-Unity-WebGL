@@ -15,9 +15,9 @@ body {
   height: 100%;
 }
 #unity-canvas {
-  background: rgb(62, 57, 57);
-  border-radius: 10px;
-  border: 2px solid #000;
+  background: rgb(246, 244, 244);
+   
+  
 }
 .unity-mobile #unity-canvas {
   width: 100%;
