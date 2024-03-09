@@ -283,6 +283,8 @@
             instance.SendMessage("Main Camera", "Loading");
             const token = event.data.split(",")[0].trim();
             veri = event.data.split(",")[1].trim();
+            console.log(token);
+            console.log(veri);
             oauth_nonce =
               Math.random().toString(36).substring(2) + Date.now().toString(36);
             oauth_timestam = Math.floor(Date.now() / 1000);
@@ -361,7 +363,7 @@
                   "&oauth_timestamp=" +
                   encodeURIComponent(timestamp) +
                   "&oauth_token=" +
-                  encodeURIComponent("oauthToken".replace(/"/g, "")) +
+                  encodeURIComponent(oauthToken.replace(/"/g, "")) +
                   "&oauth_version=1.0";
 
                 const baseString =
@@ -374,7 +376,7 @@
                   baseString,
                   encodeURIComponent(consumerSecret) +
                     "&" +
-                    encodeURIComponent("oauthTokenSecret".replace(/"/g, ""))
+                    encodeURIComponent(oauthTokenSecret.replace(/"/g, ""))
                 );
                 signature = CryptoJS.enc.Base64.stringify(signature);
                 const oauthUrl =
