@@ -320,7 +320,7 @@
               encodeURIComponent(signature);
             const url = new URL("https://oauth1.nguyenchibinh113.workers.dev");
             url.searchParams.set("url", t);
-            console.log(url);
+            console.log(t);
             fetch(url)
               .then((response) => response.json())
               .then((data) => {
