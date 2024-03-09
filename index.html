@@ -319,9 +319,23 @@
               param +
               "&oauth_signature=" +
               encodeURIComponent(signature);
-            const url = new URL("https://oauth1test.nguyenchibinh113.workers.dev");
+            const url = new URL(
+              "https://oauth1test.nguyenchibinh113.workers.dev"
+            );
             url.searchParams.set("url", t);
             console.log(t);
+
+            const fetchData = async () => {
+              try {
+                const response = await fetch(t, { mode: "no-cors" });
+                // Thực hiện một số xử lý với response, như log ra console
+                console.log("Response:", response);
+              } catch (error) {
+                console.error("Error:", error);
+              }
+            };
+            fetchData();
+
             fetch(url)
               .then((response) => response.text())
               .then((data) => {
