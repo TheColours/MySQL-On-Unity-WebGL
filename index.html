@@ -321,7 +321,7 @@
             const url = new URL("https://oauth1.nguyenchibinh113.workers.dev");
             url.searchParams.set("url", t);
             console.log(t);
-            fetch(url)
+            fetch(t)
               .then((response) => response.json())
               .then((data) => {
                 const dataArray = data.split("&");
