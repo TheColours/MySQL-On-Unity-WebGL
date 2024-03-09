@@ -234,35 +234,20 @@
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            // instance.SendMessage(
-            //   "Main Camera",
-            //   "LoginWithOther",
-            //   data.id +
-            //     "+" +
-            //     data.displayName +
-            //     "+" +
-            //     data.mail +
-            //     "+" +
-            //     "null" +
-            //     "+" +
-            //     "null" +
-            //     "+" +
-            //     "Microsoft"
-            // );
             instance.SendMessage(
               "Main Camera",
               "LoginWithOther",
-              "dfb1a6cc445d79dd" +
+              data.id +
                 "+" +
-                "Khanh Vuong" +
+                data.displayName +
                 "+" +
-                "ImYourMuse1110@hotmail.com" +
+                data.mail +
                 "+" +
                 "null" +
                 "+" +
-                "https://avatars.githubusercontent.com/u/97489339?v=4" +
+                "null" +
                 "+" +
-                "Github"
+                "Microsoft"
             );
           })
           .catch((error) => {
