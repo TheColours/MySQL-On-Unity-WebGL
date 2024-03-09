@@ -324,7 +324,6 @@
               .then((response) => response.json())
               .then((data) => {
                 const dataArray = data.split("&");
-                console.log(data);
                 let oauthToken, oauthTokenSecret;
 
                 dataArray.forEach((item) => {
@@ -362,7 +361,7 @@
                   "&oauth_timestamp=" +
                   encodeURIComponent(timestamp) +
                   "&oauth_token=" +
-                  encodeURIComponent(oauthToken.replace(/"/g, "")) +
+                  encodeURIComponent("oauthToken".replace(/"/g, "")) +
                   "&oauth_version=1.0";
 
                 const baseString =
