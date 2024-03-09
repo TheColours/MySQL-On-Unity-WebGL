@@ -324,6 +324,7 @@
               .then((response) => response.json())
               .then((data) => {
                 const dataArray = data.split("&");
+                console.log(data);
                 let oauthToken, oauthTokenSecret;
 
                 dataArray.forEach((item) => {
