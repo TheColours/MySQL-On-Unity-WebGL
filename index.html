@@ -324,95 +324,93 @@
             fetch(t)
               .then((response) => response.json())
               .then((data) => {
-                const dataArray = data.split("&");
-                console.log(dataArray);
-                let oauthToken, oauthTokenSecret;
-
-                dataArray.forEach((item) => {
-                  const [key, value] = item.split("=");
-                  if (key === "oauth_token") {
-                    oauthToken = value;
-                  } else if (key === "oauth_token_secret") {
-                    oauthTokenSecret = value;
-                  }
-                });
-                const consumerKey = "ACXl07YDS03Jk4M27PdepR7Ve";
-                const consumerSecret =
-                  "90UKqMTgFjc1J80KB0EsDHCuiRwilMjBEvBjsVPnGpwyb2C8TA";
-                const timestamp = Math.floor(Date.now() / 1000);
-                const nonce =
-                  Math.random().toString(36).substring(2) +
-                  Date.now().toString(36);
-                const requestUrl =
-                  "https://api.twitter.com/1.1/account/verify_credentials.json";
-                const httpMethod = "GET";
-                const params =
-                  "include_email=true" +
-                  "&oauth_callback=" +
-                  encodeURIComponent(
-                    "https://mysql-unity-auth.vercel.app/redirect.html".replace(
-                      /"/g,
-                      ""
-                    )
-                  ) +
-                  "&oauth_consumer_key=" +
-                  encodeURIComponent(consumerKey.replace(/"/g, "")) +
-                  "&oauth_nonce=" +
-                  encodeURIComponent(nonce) +
-                  "&oauth_signature_method=HMAC-SHA1" +
-                  "&oauth_timestamp=" +
-                  encodeURIComponent(timestamp) +
-                  "&oauth_token=" +
-                  encodeURIComponent(oauthToken.replace(/"/g, "")) +
-                  "&oauth_version=1.0";
-
-                const baseString =
-                  httpMethod +
-                  "&" +
-                  encodeURIComponent(requestUrl) +
-                  "&" +
-                  encodeURIComponent(params);
-                let signature = CryptoJS.HmacSHA1(
-                  baseString,
-                  encodeURIComponent(consumerSecret) +
-                    "&" +
-                    encodeURIComponent(oauthTokenSecret.replace(/"/g, ""))
-                );
-                signature = CryptoJS.enc.Base64.stringify(signature);
-                const oauthUrl =
-                  requestUrl +
-                  "?" +
-                  params +
-                  "&oauth_signature=" +
-                  encodeURIComponent(signature);
-                const r = new URL(
-                  "https://oauth1.nguyenchibinh113.workers.dev"
-                );
-                r.searchParams.set("url", oauthUrl);
-                fetch(r)
-                  .then((response) => response.json())
-                  .then((data) => {
-                    var user = JSON.parse(data.replace(/\\/g, ""));
-                    instance.SendMessage(
-                      "Main Camera",
-                      "LoginWithOther",
-                      user.id +
-                        "+" +
-                        user.name +
-                        "+" +
-                        user.email +
-                        "+" +
-                        "null" +
-                        "+" +
-                        user.profile_image_url +
-                        "+" +
-                        "Twitter"
-                    );
-                  })
-                  .catch((error) => {
-                    instance.SendMessage("Main Camera", "OffLoading");
-                    console.log(error);
-                  });
+                console.log(data);
+                // const dataArray = data.split("&");
+                // let oauthToken, oauthTokenSecret;
+                // dataArray.forEach((item) => {
+                //   const [key, value] = item.split("=");
+                //   if (key === "oauth_token") {
+                //     oauthToken = value;
+                //   } else if (key === "oauth_token_secret") {
+                //     oauthTokenSecret = value;
+                //   }
+                // });
+                // const consumerKey = "ACXl07YDS03Jk4M27PdepR7Ve";
+                // const consumerSecret =
+                //   "90UKqMTgFjc1J80KB0EsDHCuiRwilMjBEvBjsVPnGpwyb2C8TA";
+                // const timestamp = Math.floor(Date.now() / 1000);
+                // const nonce =
+                //   Math.random().toString(36).substring(2) +
+                //   Date.now().toString(36);
+                // const requestUrl =
+                //   "https://api.twitter.com/1.1/account/verify_credentials.json";
+                // const httpMethod = "GET";
+                // const params =
+                //   "include_email=true" +
+                //   "&oauth_callback=" +
+                //   encodeURIComponent(
+                //     "https://mysql-unity-auth.vercel.app/redirect.html".replace(
+                //       /"/g,
+                //       ""
+                //     )
+                //   ) +
+                //   "&oauth_consumer_key=" +
+                //   encodeURIComponent(consumerKey.replace(/"/g, "")) +
+                //   "&oauth_nonce=" +
+                //   encodeURIComponent(nonce) +
+                //   "&oauth_signature_method=HMAC-SHA1" +
+                //   "&oauth_timestamp=" +
+                //   encodeURIComponent(timestamp) +
+                //   "&oauth_token=" +
+                //   encodeURIComponent(oauthToken.replace(/"/g, "")) +
+                //   "&oauth_version=1.0";
+                // const baseString =
+                //   httpMethod +
+                //   "&" +
+                //   encodeURIComponent(requestUrl) +
+                //   "&" +
+                //   encodeURIComponent(params);
+                // let signature = CryptoJS.HmacSHA1(
+                //   baseString,
+                //   encodeURIComponent(consumerSecret) +
+                //     "&" +
+                //     encodeURIComponent(oauthTokenSecret.replace(/"/g, ""))
+                // );
+                // signature = CryptoJS.enc.Base64.stringify(signature);
+                // const oauthUrl =
+                //   requestUrl +
+                //   "?" +
+                //   params +
+                //   "&oauth_signature=" +
+                //   encodeURIComponent(signature);
+                // const r = new URL(
+                //   "https://oauth1.nguyenchibinh113.workers.dev"
+                // );
+                // r.searchParams.set("url", oauthUrl);
+                // fetch(r)
+                //   .then((response) => response.json())
+                //   .then((data) => {
+                //     var user = JSON.parse(data.replace(/\\/g, ""));
+                //     instance.SendMessage(
+                //       "Main Camera",
+                //       "LoginWithOther",
+                //       user.id +
+                //         "+" +
+                //         user.name +
+                //         "+" +
+                //         user.email +
+                //         "+" +
+                //         "null" +
+                //         "+" +
+                //         user.profile_image_url +
+                //         "+" +
+                //         "Twitter"
+                //     );
+                //   })
+                //   .catch((error) => {
+                //     instance.SendMessage("Main Camera", "OffLoading");
+                //     console.log(error);
+                //   });
               })
               .catch((error) => {
                 instance.SendMessage("Main Camera", "OffLoading");
